@@ -1,0 +1,22 @@
+{
+  "name": "game01",
+  "version": "0.0.1",
+  "description": "A really cool game",
+  "author": "Tim Goll",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "rm": "rm -r ./dist",
+    "rm_win": "if exist .\\dist rmdir .\\dist /S /Q",
+    "html": "find ./src -name '*.html' -type f -exec cp --parents {} ./dist \\; /Q",
+    "html_win": "XCOPY /S /y .\\src\\**.html .\\dist\\",
+    "start": "npm run rm && npm run html && npm run build && electron ./dist/app.js",
+    "start_win": "npm run rm_win && npm run html_win && npm run build && electron ./dist/app.js"
+  },
+  "devDependencies": {
+    "electron": "^4.1.1",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.0"
+  }
+}
