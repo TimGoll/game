@@ -7,11 +7,13 @@
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "rm": "rm -r ./dist",
+    "rm": "rm -r -f ./dist",
     "rm_win": "if exist .\\dist rmdir .\\dist /S /Q",
-    "html": "find ./src -name '*.html' -type f -exec cp --parents {} ./dist \\; /Q",
+    "html_lin": "find ./src -name '*.html' -type f -exec cp --parents {} ./dist \\;",
+    "html_mac": "cd ./src; find ./ -name '*.html' -type f -exec rsync -R {} ../dist/ \\;",
     "html_win": "XCOPY /S /y .\\src\\**.html .\\dist\\",
-    "start": "npm run rm && npm run html && npm run build && electron ./dist/app.js",
+    "start_lin": "npm run rm && npm run html_lin && npm run build && electron ./dist/app.js",
+    "start_mac": "npm run rm && npm run html_mac && npm run build && electron ./dist/app.js",
     "start_win": "npm run rm_win && npm run html_win && npm run build && electron ./dist/app.js"
   },
   "devDependencies": {
