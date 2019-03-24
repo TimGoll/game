@@ -1,0 +1,6 @@
+.basic_button {
+    background-color: crimson;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 10px 10px 0;
+}
