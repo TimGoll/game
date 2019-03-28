@@ -12,16 +12,14 @@
     "html_lin": "find ./src -name '*.html' -type f -exec cp --parents {} ./dist \\;",
     "html_mac": "cd ./src; find ./ -name '*.html' -type f -exec rsync -R {} ../dist/ \\;",
     "html_win": "XCOPY /S /y .\\src\\**.html .\\dist\\",
-    "css_lin": "find ./src -name '*.css' -type f -exec cp --parents {} ./dist \\;",
-    "css_mac": "cd ./src; find ./ -name '*.css' -type f -exec rsync -R {} ../dist/ \\;",
-    "css_win": "XCOPY /S /y .\\src\\**.css .\\dist\\",
-    "start_lin": "npm run rm && npm run html_lin && npm run css_lin && npm run build && electron ./dist/app.js",
-    "start_mac": "npm run rm && npm run html_mac && npm run css_mac && npm run build && electron ./dist/app.js",
-    "start_win": "npm run rm_win && npm run html_win && npm run css_win && npm run build && electron ./dist/app.js"
+    "css": "lessc ./src/client/style/cl_main.less ./dist/client/style/cl_main.css",
+    "start_lin": "npm run rm && npm run html_lin && npm run css && npm run build && electron ./dist/app.js",
+    "start_mac": "npm run rm && npm run html_mac && npm run css && npm run build && electron ./dist/app.js",
+    "start_win": "npm run rm_win && npm run html_win && npm run css && npm run build && electron ./dist/app.js"
   },
   "devDependencies": {
     "electron": "^4.1.1",
-    "tslint": "^5.14.0",
+    "less": "^3.9.0",
     "typescript": "^3.3.0"
   }
 }
