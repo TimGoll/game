@@ -4,7 +4,7 @@
 
 ### Installing node.js
 
-Download at [https://nodejs.org/en/download/](https://nodejs.org/en/download/) and install on your system.
+Download at [https://nodejs.org/en/download/](https://nodejs.org/en/download/) and install it on your system.
 
 ### Installing TypeScript
 
@@ -31,7 +31,7 @@ npm install
 There is a start command for every operating system which compiles the game and copies the needed files into the dist folder.
 
 ``` bash
-npm start_win / start_mac / start_lin
+npm run start_win / start_mac / start_lin
 ```
 
 Textures: https://itch.io/game-assets/tag-8-bit

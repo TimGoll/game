@@ -1,3 +1,5 @@
+import { LangHandler } from "./cl_lang_handler";
+
 interface IMenuDictionary {
     [key: string]: IMenu;
 };
@@ -18,13 +20,15 @@ export interface IMenu {
     elements : IMenuElement[]
 }
 
-export class MenuManager {
+export class Menu {
     menues : IMenuDictionary = {};
     element : HTMLElement;
     displayed: boolean;
+    langHandler : LangHandler;
 
-    constructor(element_id : string) {
+    constructor(element_id : string, langHandler : LangHandler) {
         this.element = document.getElementById(element_id);
+        this.langHandler = langHandler;
     }
 
     /**
@@ -78,7 +82,7 @@ export class MenuManager {
     generate_element(element : IMenuElement) : HTMLElement { //TODO: this is a placeholder menu generator
         let button = document.createElement('div');
         button.className = element.class;
-        button.innerText = element.title;
+        button.innerText = this.langHandler.get_string(element.title);
         button.addEventListener('click', element.onClick);
 
         return button;

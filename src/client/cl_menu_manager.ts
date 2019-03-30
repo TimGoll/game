@@ -1,196 +1,210 @@
-import { MenuManager } from "./cl_menu_manager_class";
+import { LangHandler } from "./cl_lang_handler";
+import { Menu } from "./cl_menu_manager_class";
 
-let menuManager = new MenuManager('menues');
+// menu variables must be global in order to be accessed from the callback functions
+let mainMenu : Menu;//handles main menu
 
-export function register_menues() : void {
-    menuManager.register_menu({
-        id: 'main_menu',
-        title: 'menues.main.title',
-        elements: [
-            {
-                title: 'menues.main.button.multiplayer',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            },
-            {
-                title: 'menues.main.button.quit',
-                onClick: function () {
-                    console.log("quit");
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            }
-        ]
-    });
+export class MenuManager {
+    langHandler : LangHandler;
+
+    constructor(langHandler : LangHandler) {
+        this.langHandler = langHandler;
+    }
+
+    display_default_menu() : void {
+        mainMenu.display_menu('main_menu');  
+    }
+
+    register_main_menu(element_id : string) : void {
+        mainMenu = new Menu(element_id, this.langHandler);
     
-    menuManager.register_menu({
-        id: 'multiplayer',
-        title: 'menues.multiplayer.title',
-        elements: [
-            {
-                title: 'menues.multiplayer.button.host',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer_host');
+        mainMenu.register_menu({
+            id: 'main_menu',
+            title: 'main_menu.main.title',
+            elements: [
+                {
+                    title: 'main_menu.main.button.multiplayer',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer');
+                        
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
                 },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            },
-            {
-                title: 'menues.multiplayer.button.find',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer_find');
+                {
+                    title: 'main_menu.main.button.quit',
+                    onClick: function () {
+                        console.log("quit");
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                }
+            ]
+        });
+        
+        mainMenu.register_menu({
+            id: 'multiplayer',
+            title: 'main_menu.multiplayer.title',
+            elements: [
+                {
+                    title: 'main_menu.multiplayer.button.host',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer_host');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
                 },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            },
-            {
-                title: 'menues.generic.button.back',
-                onClick: function () {
-                    menuManager.display_menu('main_menu');
+                {
+                    title: 'main_menu.multiplayer.button.find',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer_find');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
                 },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            }
-        ]
-    });
-
-    menuManager.register_menu({
-        id: 'multiplayer_host',
-        title: 'menues.multiplayer.host',
-        elements: [
-            {
-                title: 'menues.multiplayer.button.host.start',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer_lobby_host');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            },
-            {
-                title: 'menues.generic.button.back',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            }
-        ]
-    });
-
-    menuManager.register_menu({
-        id: 'multiplayer_find',
-        title: 'menues.multiplayer.find',
-        elements: [
-            {
-                title: 'menues.multiplayer.button.find.start',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer_lobby_client');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            },
-            {
-                title: 'menues.generic.button.back',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            }
-        ]
-    });
-
-    menuManager.register_menu({
-        id: 'multiplayer_lobby_host',
-        title: 'menues.multiplayer.lobby_host',
-        elements: [
-            {
-                title: 'menues.multiplayer.button.lobby_host.start',
-                onClick: function () {
-                    console.log('start hosted mutiplayer game');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            },
-            {
-                title: 'menues.generic.button.back',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer_host');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            }
-        ]
-    });
-
-    menuManager.register_menu({
-        id: 'multiplayer_lobby_client',
-        title: 'menues.multiplayer.lobby_client',
-        elements: [
-            {
-                title: 'menues.multiplayer.button.lobby_client.ready',
-                onClick: function () {
-                    console.log('send player is ready');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            },
-            {
-                title: 'menues.generic.button.back',
-                onClick: function () {
-                    menuManager.display_menu('multiplayer_find');
-                },
-                width: '300px',
-                height: '100px',
-                posx: '0',
-                posy: '0',
-                class: 'basic_button'
-            }
-        ]
-    });
+                {
+                    title: 'main_menu.generic.button.back',
+                    onClick: function () {
+                        mainMenu.display_menu('main_menu');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                }
+            ]
+        });
     
+        mainMenu.register_menu({
+            id: 'multiplayer_host',
+            title: 'main_menu.multiplayer.host',
+            elements: [
+                {
+                    title: 'main_menu.multiplayer.button.host.start',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer_lobby_host');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                },
+                {
+                    title: 'main_menu.generic.button.back',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                }
+            ]
+        });
     
+        mainMenu.register_menu({
+            id: 'multiplayer_find',
+            title: 'main_menu.multiplayer.find',
+            elements: [
+                {
+                    title: 'main_menu.multiplayer.button.find.start',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer_lobby_client');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                },
+                {
+                    title: 'main_menu.generic.button.back',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                }
+            ]
+        });
     
-    // default menu
-    menuManager.display_menu('main_menu');    
+        mainMenu.register_menu({
+            id: 'multiplayer_lobby_host',
+            title: 'main_menu.multiplayer.lobby_host',
+            elements: [
+                {
+                    title: 'main_menu.multiplayer.button.lobby_host.start',
+                    onClick: function () {
+                        console.log('start hosted mutiplayer game');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                },
+                {
+                    title: 'main_menu.generic.button.back',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer_host');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                }
+            ]
+        });
+    
+        mainMenu.register_menu({
+            id: 'multiplayer_lobby_client',
+            title: 'main_menu.multiplayer.lobby_client',
+            elements: [
+                {
+                    title: 'main_menu.multiplayer.button.lobby_client.ready',
+                    onClick: function () {
+                        console.log('send player is ready');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                },
+                {
+                    title: 'main_menu.generic.button.back',
+                    onClick: function () {
+                        mainMenu.display_menu('multiplayer_find');
+                    },
+                    width: '300px',
+                    height: '100px',
+                    posx: '0',
+                    posy: '0',
+                    class: 'basic_button'
+                }
+            ]
+        });
+    }
 }
+
+
 
