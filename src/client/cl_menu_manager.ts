@@ -90,12 +90,12 @@ export class MenuManager {
     
         mainMenu.register_menu({
             id: 'multiplayer_host',
-            title: 'main_menu.multiplayer.host',
+            title: 'main_menu.multiplayer_host.title',
             elements: [
                 {
-                    title: 'main_menu.multiplayer.button.host.start',
+                    title: 'main_menu.multiplayer_host.button.start',
                     onClick: function () {
-                        mainMenu.display_menu('multiplayer_lobby_host');
+                        mainMenu.display_menu('multiplayer_host_lobby');
                     },
                     width: '300px',
                     height: '100px',
@@ -119,12 +119,12 @@ export class MenuManager {
     
         mainMenu.register_menu({
             id: 'multiplayer_find',
-            title: 'main_menu.multiplayer.find',
+            title: 'main_menu.multiplayer_find.title',
             elements: [
                 {
-                    title: 'main_menu.multiplayer.button.find.start',
+                    title: 'main_menu.multiplayer_find.button.start',
                     onClick: function () {
-                        mainMenu.display_menu('multiplayer_lobby_client');
+                        mainMenu.display_menu('multiplayer_client_lobby');
                     },
                     width: '300px',
                     height: '100px',
@@ -147,11 +147,11 @@ export class MenuManager {
         });
     
         mainMenu.register_menu({
-            id: 'multiplayer_lobby_host',
-            title: 'main_menu.multiplayer.lobby_host',
+            id: 'multiplayer_host_lobby',
+            title: 'main_menu.multiplayer_host_lobby.title',
             elements: [
                 {
-                    title: 'main_menu.multiplayer.button.lobby_host.start',
+                    title: 'main_menu.multiplayer_host_lobby.button.start',
                     onClick: function () {
                         console.log('start hosted mutiplayer game');
                     },
@@ -176,11 +176,11 @@ export class MenuManager {
         });
     
         mainMenu.register_menu({
-            id: 'multiplayer_lobby_client',
-            title: 'main_menu.multiplayer.lobby_client',
+            id: 'multiplayer_client_lobby',
+            title: 'main_menu.multiplayer_client_lobby',
             elements: [
                 {
-                    title: 'main_menu.multiplayer.button.lobby_client.ready',
+                    title: 'main_menu.multiplayer_client_lobby.button.ready',
                     onClick: function () {
                         console.log('send player is ready');
                     },

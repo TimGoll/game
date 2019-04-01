@@ -56,7 +56,8 @@ export class Menu {
 
         this.displayed = true;
 
-        this.element.innerHTML = menu.title; // clear menu
+        this.element.innerHTML = ''; // clear menu
+        this.element.appendChild(this.generate_title(menu.title));
         for (let i = 0; i < menu.elements.length; i++) {
             this.element.appendChild(this.generate_element(menu.elements[i]));
         }
@@ -86,5 +87,13 @@ export class Menu {
         button.addEventListener('click', element.onClick);
 
         return button;
+    }
+
+    generate_title(title : string) : HTMLElement {
+        let title_box = document.createElement('h1');
+        title_box.className = 'menu_title';
+        title_box.innerText = this.langHandler.get_string(title);
+
+        return title_box;
     }
 }

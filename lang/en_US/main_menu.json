@@ -2,7 +2,47 @@
     "main": {
         "title": "Menu",
         "button": {
-            "multiplayer": "Start Multiplayer Game"
+            "multiplayer": "Start Multiplayer Game",
+            "quit": "Quit Game"
+        }
+    },
+    "multiplayer": {
+        "title": "Multiplayer",
+        "button": {
+            "host": "Host Game",
+            "find": "Find Game"
+        }
+    },
+    "multiplayer_host": {
+        "title": "Host Game",
+        "button": {
+            "start": "Start Game"
+        }
+    },
+    "multiplayer_find": {
+        "title": "Find Game",
+        "button": {
+            "start": "Enter Game"
+        }
+    },
+    "multiplayer_host_lobby": {
+        "title": "Lobby",
+        "button": {
+            "start": "Start Game"
+        }
+    },
+    "multiplayer_client_lobby": {
+        "title": "Lobby",
+        "button": {
+            "ready": "Ready"
+        }
+    },
+
+
+
+    "generic": {
+        "button": {
+            "back": "Back"
         }
     }
 }

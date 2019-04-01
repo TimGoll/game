@@ -1,6 +1,34 @@
+@padding_button_vertical: 10px;
+@padding_button_horizontal: 20px;
+
+@margin_button_vertical: 10px;
+@margin_button_horizontal: 20px;
+
+.main_menu_box {
+    float: right;
+    margin-right: 150px;
+    width: 400px;
+    height: 100vh;
+    background: yellow;
+}
+
+h1 {
+    .menu_title {
+        margin: @margin_button_vertical @margin_button_horizontal;
+    }
+}
+
 .basic_button {
     background-color: crimson;
     border-radius: 3px;
     cursor: pointer;
-    margin: 0 10px 10px 0;
+    margin: @margin_button_vertical @margin_button_horizontal;
+    padding: @padding_button_vertical @padding_button_horizontal;
+    width: calc(100% - 2*@padding_button_horizontal - 2*@margin_button_horizontal);
+    float: left;
+    text-align: center;
+
+    &:hover {
+        background-color: green;
+    }
 }
